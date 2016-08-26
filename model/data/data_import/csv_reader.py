@@ -1,0 +1,2 @@
+def reader () :
+    return null
