@@ -18,7 +18,7 @@ def reader (conn, cursor) :
 
     for index, entry in raw_data.iterrows():
         feed_entry(conn, cursor, accountId, entry)
-
+    conn.commit()
     print("---------------------------------------------------------------------------\n" + "Importing data is completed. \n---------------------------------------------------------------------------\n")
 
 def account_selector (conn, cursor):
@@ -88,4 +88,4 @@ def feed_entry (conn, cursor, accountId, entry) :
 
     insert_sql = "INSERT INTO Transaction VALUES " + "(UUID(), \'" + accountId + "\', \'" + descriptionId + "\', " + str(amount) + ", \'" + str(date) + "\', " + str(balance) + ")"
     cursor.execute(insert_sql)
-    conn.commit()
+
